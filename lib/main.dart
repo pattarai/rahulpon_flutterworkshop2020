@@ -18,14 +18,16 @@ class _StatefulWidgetDemo extends State<StatefulWidgetDemo> {
   var count;
   List<String> days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-  TextEditingController textEditingController = new TextEditingController();
+  List<int> stack = [];
+
+  TextEditingController z = new TextEditingController();
+  String saveData = "";
 
   var selectedDay;
 
   _StatefulWidgetDemo() {
     count = 0;
     selectedDay = days[0];
-    textEditingController.text = "This is the old state/text";
   }
 
   @override
@@ -38,24 +40,40 @@ class _StatefulWidgetDemo extends State<StatefulWidgetDemo> {
           setState(() {
             count++;
           });
+          // count++;
         },
       ),
       appBar: AppBar(
-        title: Text("StatefulWidgetDemo"),
+        title: Text(count.toString()),
       ),
       body: Column(
         children: [
           TextFormField(
-            controller: textEditingController,
+            controller: z,
             onEditingComplete: () {
-              setState(() {
-                
-              });
+              stack.add(int.parse(z.text));
+              z.text = "";
+              setState(() {});
             },
           ),
-          Text(textEditingController.text),
+          Text(printStackVertically()),
+          RaisedButton(
+            child: Text("Pop"),
+            onPressed: () {
+              stack.removeLast();
+              setState(() {});
+            },
+          ),
         ],
       ),
     );
+  }
+
+  String printStackVertically() {
+    String x = "";
+    stack.reversed.forEach((y) {
+      x += y.toString() + "\n";
+    });
+    return x;
   }
 }
