@@ -1,79 +1,56 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: StatefulWidgetDemo(),
-  ));
+  runApp(MaterialApp(home: Stack()));
 }
 
-class StatefulWidgetDemo extends StatefulWidget {
+class Stack extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _StatefulWidgetDemo();
+    // TODO: implement createState
+    return _Stack();
   }
 }
 
-class _StatefulWidgetDemo extends State<StatefulWidgetDemo> {
-  var count;
-  List<String> days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-
-  List<int> stack = [];
-
-  TextEditingController z = new TextEditingController();
-  String saveData = "";
-
-  var selectedDay;
-
-  _StatefulWidgetDemo() {
-    count = 0;
-    selectedDay = days[0];
-  }
-
+class _Stack extends State<Stack> {
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepPurple,
-        child: Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            count++;
-          });
-          // count++;
-        },
-      ),
       appBar: AppBar(
-        title: Text(count.toString()),
+        title: Text("Stack Demo"),
       ),
-      body: Column(
-        children: [
-          TextFormField(
-            controller: z,
-            onEditingComplete: () {
-              stack.add(int.parse(z.text));
-              z.text = "";
-              setState(() {});
-            },
-          ),
-          Text(printStackVertically()),
-          RaisedButton(
-            child: Text("Pop"),
-            onPressed: () {
-              stack.removeLast();
-              setState(() {});
-            },
-          ),
-        ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+             Text(
+              "Enter a number to push into the stack:",
+              textAlign: TextAlign.center,),
+            TextFormField(),
+            Padding(padding: EdgeInsets.all(10),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RaisedButton(
+                  child: Text("Push"),
+                  onPressed: null,
+                ),
+                Padding(padding: EdgeInsets.all(10),),
+                RaisedButton(
+                  child: Text("Pop"),
+                  onPressed: null,
+                ),
+              ],
+            ),
+            Padding(padding: EdgeInsets.all(10),),
+            Text(
+              "Elements in the stack are:",
+              textAlign: TextAlign.center,),
+          ],
+        ),
       ),
     );
-  }
-
-  String printStackVertically() {
-    String x = "";
-    stack.reversed.forEach((y) {
-      x += y.toString() + "\n";
-    });
-    return x;
   }
 }
