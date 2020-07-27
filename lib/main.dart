@@ -47,9 +47,7 @@ class _Stack extends State<Stack> {
                     onPressed: () {
                       stack.add(int.parse(_stackController.text));
                       print(stack.toString());
-                      setState(() {
-                        
-                      });
+                      setState(() {});
                     }),
                 Padding(
                   padding: EdgeInsets.all(10),
@@ -57,11 +55,14 @@ class _Stack extends State<Stack> {
                 RaisedButton(
                     child: Text("Pop"),
                     onPressed: () {
-                      stack.removeLast();
+                      try {
+                        stack.removeLast();
+                      } on RangeError catch (e) {
+                        print("Underflow detected!");
+                      }
+
                       print(stack.toString());
-                      setState(() {
-                        
-                      });
+                      setState(() {});
                     }),
               ],
             ),
