@@ -47,6 +47,9 @@ class _Stack extends State<Stack> {
                     onPressed: () {
                       stack.add(int.parse(_stackController.text));
                       print(stack.toString());
+                      setState(() {
+                        
+                      });
                     }),
                 Padding(
                   padding: EdgeInsets.all(10),
@@ -56,6 +59,9 @@ class _Stack extends State<Stack> {
                     onPressed: () {
                       stack.removeLast();
                       print(stack.toString());
+                      setState(() {
+                        
+                      });
                     }),
               ],
             ),
@@ -66,9 +72,20 @@ class _Stack extends State<Stack> {
               "Elements in the stack are:",
               textAlign: TextAlign.center,
             ),
+            Column(
+              children: returnStackElements(),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> returnStackElements() {
+    List<Widget> elementsToReturn = [];
+    stack.reversed.forEach((element) {
+      elementsToReturn.add(Text(element.toString()));
+    });
+    return elementsToReturn;
   }
 }
