@@ -71,9 +71,6 @@ class HomeScreenState extends State<HomeScreen> {
           // you can instead choose to have a static title
           title: new Text(
             widget.drawerItems[_selectedDrawerIndex].title,
-            style: TextStyle(
-              fontFamily: "Poppins",
-            ),
           ),
         ),
         drawer: new Drawer(
@@ -81,14 +78,8 @@ class HomeScreenState extends State<HomeScreen> {
             child: new Column(
               children: <Widget>[
                 new UserAccountsDrawerHeader(
-                  accountName: new Text("Name here",
-                      style: TextStyle(
-                          fontFamily: "Poppins", fontWeight: FontWeight.w600)),
-                  accountEmail: new Text("@rahwinside",
-                      style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12)),
+                  accountName: new Text("Name here"),
+                  accountEmail: new Text("@rahwinside"),
                   currentAccountPicture: CircleAvatar(
                     radius: 60.0,
                     backgroundColor: const Color(0xFF778899),
