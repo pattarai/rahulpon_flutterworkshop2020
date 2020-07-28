@@ -12,28 +12,40 @@ class WebViewDemo extends StatefulWidget {
 }
 
 class _WebViewDemo extends State<WebViewDemo> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  Completer<WebViewController> _controller = Completer<WebViewController>();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       body: Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl: 'https://flutter.dev',
+          initialUrl: 'https://www.google.com',
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
           },
           onPageStarted: (String url) {
-            print('Page started loading: $url');
+            showAlertDialog(context);
           },
           onPageFinished: (String url) {
-            print('Page finished loading: $url');
+            try {
+              Navigator.pop(context);
+            } catch (e) {
+              print("Exception");
+            }
           },
           gestureNavigationEnabled: true,
         );
       }),
     );
+  }
+
+  showAlertDialog(var context) {
+    var alertDialog = AlertDialog(
+      title: Text("Loading..."),
+      content: LinearProgressIndicator(),
+    );
+
+    showDialog(context: context, builder: (context) => alertDialog);
   }
 }
