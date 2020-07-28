@@ -56,10 +56,7 @@ class HomeScreenState extends State<HomeScreen> {
         }
         drawerOptions.add(new ListTile(
           leading: new Icon(d.icon),
-          title: new Text(
-            d.title,
-            style: TextStyle(fontFamily: "Poppins"),
-          ),
+          title: new Text(d.title),
           selected: i == _selectedDrawerIndex,
           onTap: () => _onSelectItem(i),
         ));
