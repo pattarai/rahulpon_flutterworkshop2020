@@ -24,10 +24,6 @@ class _Login extends State<Login> {
     // TODO: implement build
     return Scaffold(
       backgroundColor: Color(0xfffff1dd),
-      appBar: AppBar(
-        backgroundColor: Color(0xff9791a0),
-        title: Text("Login/Sign up"),
-      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(

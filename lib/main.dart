@@ -5,7 +5,7 @@ void main() {
   runApp(MaterialApp(home: HomeScreen()));
 }
 
-class Stack extends StatefulWidget {
+class StackDemo extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -13,7 +13,7 @@ class Stack extends StatefulWidget {
   }
 }
 
-class _Stack extends State<Stack> {
+class _Stack extends State<StackDemo> {
   TextEditingController _stackController = new TextEditingController();
 
   List<int> stack = new List<int>();

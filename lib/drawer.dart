@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
+import 'main_bakk.dart';
 
 class DrawerItem {
   String title;
@@ -8,10 +10,13 @@ class DrawerItem {
 }
 
 class HomeScreen extends StatefulWidget {
+  HomeScreen() {}
+
+  int x = 10;
 
   var drawerItems = [
-    new DrawerItem("Dashboard", Icons.home),
-    new DrawerItem("Dashboard", Icons.home),
+    new DrawerItem("Login", Icons.vpn_key),
+    new DrawerItem("Stack", Icons.layers),
   ];
 
   @override
@@ -29,7 +34,10 @@ class HomeScreenState extends State<HomeScreen> {
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return new Text("Hello World");
+        return Login();
+        break;
+      case 1:
+        return StackDemo();
         break;
       default:
         return new Text("Error");
@@ -48,50 +56,46 @@ class HomeScreenState extends State<HomeScreen> {
     var drawerOptions = <Widget>[];
 
     for (var i = 0; i < widget.drawerItems.length; i++) {
-        var d = widget.drawerItems[i];
-        if (i == 7) {
-          drawerOptions.add(
-            const Divider(height: 1.0, color: Colors.grey),
-          );
-        }
-        drawerOptions.add(new ListTile(
-          leading: new Icon(d.icon),
-          title: new Text(d.title),
-          selected: i == _selectedDrawerIndex,
-          onTap: () => _onSelectItem(i),
-        ));
-      }
-      return new Scaffold(
-        key: scaffoldKey,
-        appBar: new AppBar(
-          // here we display the title corresponding to the fragment
-          // you can instead choose to have a static title
-          title: new Text(
-            widget.drawerItems[_selectedDrawerIndex].title,
-          ),
-        ),
-        drawer: new Drawer(
-          child: SingleChildScrollView(
-            child: new Column(
-              children: <Widget>[
-                new UserAccountsDrawerHeader(
-                  accountName: new Text("Name here"),
-                  accountEmail: new Text("@rahwinside"),
-                  currentAccountPicture: CircleAvatar(
-                    radius: 60.0,
-                    backgroundColor: const Color(0xFF778899),
-                    backgroundImage: NetworkImage("some URL here"), // for Network image
-                  ),
-                  decoration: new BoxDecoration(
-                    color: Color(0xFF222437),
-                  ),
-                ),
-                new Column(children: drawerOptions)
-              ],
-            ),
-          ),
-        ),
-        body: _getDrawerItemWidget(_selectedDrawerIndex),
-      );
+      var d = widget.drawerItems[i];
+      drawerOptions.add(new ListTile(
+        leading: new Icon(d.icon),
+        title: new Text(d.title),
+        selected: i == _selectedDrawerIndex,
+        onTap: () => _onSelectItem(i),
+      ));
     }
+    return new Scaffold(
+      key: scaffoldKey,
+      appBar: new AppBar(
+        // here we display the title corresponding to the fragment
+        // you can instead choose to have a static title
+        title: new Text(
+          widget.drawerItems[_selectedDrawerIndex].title,
+        ),
+      ),
+      drawer: new Drawer(
+        child: SingleChildScrollView(
+          child: new Column(
+            children: <Widget>[
+              new UserAccountsDrawerHeader(
+                accountName: new Text("Fabian"),
+                accountEmail: new Text("fabian@licet.ac.in"),
+                currentAccountPicture: CircleAvatar(
+                  radius: 60.0,
+                  backgroundColor: const Color(0xFF778899),
+                  backgroundImage: NetworkImage(
+                      "https://pbs.twimg.com/media/EYMLAPaUwAIx4vv.jpg"), // for Network image
+                ),
+                decoration: new BoxDecoration(
+                  color: Color(0xFF222437),
+                ),
+              ),
+              new Column(children: drawerOptions)
+            ],
+          ),
+        ),
+      ),
+      body: _getDrawerItemWidget(_selectedDrawerIndex),
+    );
   }
+}
