@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stateful_widgets/snackbar_demo.dart';
+import 'package:stateful_widgets/webview_demo.dart';
 import 'main.dart';
 import 'main_bakk.dart';
 
@@ -17,6 +18,7 @@ class HomeScreen extends StatefulWidget {
     new DrawerItem("Login", Icons.vpn_key),
     new DrawerItem("Stack", Icons.layers),
     new DrawerItem("SnackBars and Toasts", Icons.space_bar),
+    new DrawerItem("WebViews", Icons.web),
   ];
 
   @override
@@ -41,6 +43,9 @@ class HomeScreenState extends State<HomeScreen> {
         break;
       case 2:
         return SnackbarDemo();
+        break;
+      case 3:
+        return WebViewDemo();
         break;
       default:
         return new Text("Error");
