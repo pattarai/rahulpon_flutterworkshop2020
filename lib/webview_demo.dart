@@ -16,6 +16,8 @@ class _WebViewDemo extends State<WebViewDemo> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
+    int count = 0;
     return Scaffold(
       body: Builder(builder: (BuildContext context) {
         return WebView(
@@ -28,10 +30,10 @@ class _WebViewDemo extends State<WebViewDemo> {
             showAlertDialog(context);
           },
           onPageFinished: (String url) {
-            try {
-              Navigator.pop(context);
-            } catch (e) {
-              print("Exception");
+            print("fired");
+            count++;
+            if (count == 2) {
+              Navigator.of(context).pop();
             }
           },
           gestureNavigationEnabled: true,
@@ -44,8 +46,17 @@ class _WebViewDemo extends State<WebViewDemo> {
     var alertDialog = AlertDialog(
       title: Text("Loading..."),
       content: LinearProgressIndicator(),
+      actions: [
+        FlatButton(
+          child: Text('Approve'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
     );
 
-    showDialog(context: context, builder: (context) => alertDialog);
+    showDialog(
+        context: context, builder: (BuildContext context) => alertDialog);
   }
 }
