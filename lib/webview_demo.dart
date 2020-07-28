@@ -46,14 +46,6 @@ class _WebViewDemo extends State<WebViewDemo> {
     var alertDialog = AlertDialog(
       title: Text("Loading..."),
       content: LinearProgressIndicator(),
-      actions: [
-        FlatButton(
-          child: Text('Approve'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
     );
 
     showDialog(
