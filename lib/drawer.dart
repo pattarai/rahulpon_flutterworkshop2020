@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stateful_widgets/snackbar_demo.dart';
 import 'main.dart';
 import 'main_bakk.dart';
 
@@ -10,13 +11,12 @@ class DrawerItem {
 }
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen() {}
-
   int x = 10;
 
   var drawerItems = [
     new DrawerItem("Login", Icons.vpn_key),
     new DrawerItem("Stack", Icons.layers),
+    new DrawerItem("SnackBars and Toasts", Icons.space_bar),
   ];
 
   @override
@@ -38,6 +38,9 @@ class HomeScreenState extends State<HomeScreen> {
         break;
       case 1:
         return StackDemo();
+        break;
+      case 2:
+        return SnackbarDemo();
         break;
       default:
         return new Text("Error");
